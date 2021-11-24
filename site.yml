@@ -14,6 +14,7 @@
   roles:
     - role: k3s/master
     - role: helm
+    - role: multijuicer
 
 - hosts: node
   become: yes
