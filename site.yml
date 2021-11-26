@@ -14,7 +14,7 @@
   roles:
     - role: k3s/master
     - role: helm
-    - role: k9s
+    - role: tools
     - role: multijuicer
 
 - hosts: node

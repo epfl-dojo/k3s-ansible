@@ -1,4 +1,5 @@
-#
+# Who Let The Pods Out? — https://k9scli.io/
+# K9s provides a terminal UI to interact with your Kubernetes clusters.
 ---
 - name: check k9s
   ansible.builtin.shell:
@@ -6,8 +7,8 @@
   register: _k9s
   changed_when: False
   tags:
-    - comfort
-    - comfort.k9s
+    - tools
+    - tools.k9s
 
 - name: download k9s
   get_url:
@@ -15,8 +16,8 @@
     dest: /tmp/k9s_Linux_x86_64.tar.gz
   when: "'Version' not in _k9s.stdout"
   tags:
-    - comfort
-    - comfort.k9s
+    - tools
+    - tools.k9s
 
 - name: extract k9s_Linux_x86_64.tar.gz into /usr/bin
   ansible.builtin.shell:
@@ -24,5 +25,5 @@
     chdir: /usr/bin/
   when: "'Version' not in _k9s.stdout"
   tags:
-    - comfort
-    - comfort.k9s
+    - tools
+    - tools.k9s

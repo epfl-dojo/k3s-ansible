@@ -1,0 +1,5 @@
+- name: install k9s
+  import_tasks: k9s.yml
+  tags:
+    - tools
+    - tools.k9s
