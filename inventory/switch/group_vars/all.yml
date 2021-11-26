@@ -3,6 +3,6 @@ k3s_version: v1.22.3+k3s1
 ansible_user: root
 ansible_python_interpreter: /usr/bin/python3
 systemd_dir: /etc/systemd/system
-master_ip: 10.0.4.107 #"{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
+master_ip: 10.0.1.219 #"{{ hostvars[groups['master'][0]]['ansible_host'] | default(groups['master'][0]) }}"
 extra_server_args: ""
 extra_agent_args: ""
