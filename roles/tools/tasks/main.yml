@@ -1,3 +1,9 @@
+- name: install helm
+  import_tasks: helm.yml
+  tags:
+    - tools
+    - tools.helm
+
 - name: install k9s
   import_tasks: k9s.yml
   tags:
