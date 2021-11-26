@@ -21,7 +21,7 @@
 # helm repo add multi-juicer https://iteratec.github.io/multi-juicer/
 - name: Add multi-juicer repo
   community.kubernetes.helm_repository:
-    name: stable
+    name: multi-juicer
     repo_url: "https://iteratec.github.io/multi-juicer/"
   tags:
     - multijuicer
