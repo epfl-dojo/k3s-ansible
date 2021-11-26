@@ -55,7 +55,8 @@ inventory_mode="dev"
 inventories () {
     case "$inventory_mode" in
         dev) echo "-i inventory/switch/hosts.ini"  ;;
-        *) fatal "Invalid inventory_mode" ;;
+        reset) echo "-i inventory/switch/hosts.ini"  ;;
+        *) echo "Invalid inventory_mode" ;;
     esac
 }
 
@@ -70,6 +71,7 @@ while [ "$#" -gt 0 ]; do
             ansible_args+=("-m")
             shift ;;
         --reset) inventory_mode="reset"
+                 mode=reset
             shift ;;
         *)
             ansible_args+=("$1")
