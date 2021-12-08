@@ -4,10 +4,10 @@
   gather_facts: yes
   become: yes
   roles:
-    - role: comfort
     - role: prereq
     - role: download
-    - role: raspberrypi
+#    - role: raspberrypi
+    - role: comfort
 
 - hosts: master
   become: yes
