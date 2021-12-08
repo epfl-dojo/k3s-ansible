@@ -1,6 +1,6 @@
 ---
 
-- name: .bash_aliases
+- name: create .bash_aliases
   file:
     path: ~/.bash_aliases
     state: touch
@@ -9,7 +9,7 @@
     - comfort
     - comfort.bash
 
-- name: ~/.k8s_aliases
+- name: copy ~/.k8s_aliases
   copy:
     dest: ~/.k8s_aliases
     content: >-
