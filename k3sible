@@ -51,38 +51,40 @@ platform_check () {
     export ANSIBLE_COLLECTIONS_PATHS="$PWD/ansible-deps-cache"
 }
 
-inventory_mode="zgitpod1"
+#inventory_mode="zgitpod1"
 #inventory_mode="switch"
-
 inventories () {
     case "$inventory_mode" in
         switch) echo "-i inventory/switch/hosts.ini"  ;;
-        reset-switch) echo "-i inventory/switch/hosts.ini"  ;;
         zgitpod1) echo "-i inventory/zgitpod1/hosts.ini"  ;;
-        reset-zgitpod1) echo "-i inventory/zgitpod1/hosts.ini"  ;;
         *) echo "Invalid inventory_mode" ;;
     esac
 }
 
 ###########################################################################
 
-mode=ansible-playbook
-
+#mode=ansible-playbook
 declare -a ansible_args
 while [ "$#" -gt 0 ]; do
     case "$1" in
         -m) mode=ansible
-            ansible_args+=("-m")
-            shift ;;
-        --reset-switch) inventory_mode="reset-switch"
-                 mode=reset
-                 shift ;;
-        --reset-zgitpod1) inventory_mode="reset-zgitpod1"
-                 mode=reset
-                 shift ;;
+          ansible_args+=("-m")
+          shift ;;
+        --switch) inventory_mode="switch"
+          mode=site
+          shift ;;
+        --switch-reset) inventory_mode="switch"
+          mode=reset
+          shift ;;
+        --zgitpod1) inventory_mode="zgitpod1"
+          mode=site
+          shift ;;
+        --zgitpod1-reset) inventory_mode="zgitpod1"
+          mode=reset
+          shift ;;
         *)
-            ansible_args+=("$1")
-            shift ;;
+          ansible_args+=("$1")
+          shift ;;
     esac
 done
 
@@ -95,7 +97,7 @@ set -e
 
 platform_check
 case "$mode" in
-    ansible-playbook)
+    site)
         ansible-playbook $playbook_flags $(inventories) "${ansible_args[@]}" \
                          -e "k3sible_cwd=$OLDPWD" \
                          site.yml
