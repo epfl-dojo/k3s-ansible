@@ -1,11 +1,31 @@
-- name: install helm
+- name: Pip
+  apt:
+    package:
+    - python3-setuptools
+    - python3-pip
+  tags:
+    - tools
+
+- name: Kubernetes Python API
+  pip:
+    name: openshift
+  tags:
+    - tools
+
+- name: Helm
   import_tasks: helm.yml
   tags:
     - tools
     - tools.helm
 
-- name: install k9s
+- name: k9s
   import_tasks: k9s.yml
   tags:
     - tools
     - tools.k9s
+
+- name: Kubernetes dashboard
+  import_tasks: dashboard.yml
+  tags:
+    - tools
+    - tools.dashboard

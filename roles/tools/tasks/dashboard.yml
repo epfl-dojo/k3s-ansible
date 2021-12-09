@@ -1,0 +1,25 @@
+- include_vars: dashboard-vars.yml
+  tags: always
+
+# Please do not delete the debug lines that are commented out! 
+# - debug:
+#     msg: >-
+#       https://raw.githubusercontent.com/kubernetes/dashboard/{{ version_kube_dashboard }}/aio/deploy/recommended.yaml
+# 
+# - debug:
+#     msg: '{{ item | from_yaml }}'
+#   with_items: >-
+#       {{ lookup('url', 'https://raw.githubusercontent.com/kubernetes/dashboard/{{ version_kube_dashboard }}/aio/deploy/recommended.yaml',
+#       split_lines=False)
+#       .split('---') }}
+#   when: false
+
+#Tip for deploying all the necessary objects for the dashboard directly from the deploy file on the Github repository of the dashboard
+- name: Dashboard objects from GitHub
+  kubernetes.core.k8s:
+    state: present
+    resource_definition: '{{ item | from_yaml }}'
+  with_items: >-
+      {{ lookup('url', 'https://raw.githubusercontent.com/kubernetes/dashboard/{{ version_kube_dashboard }}/aio/deploy/recommended.yaml',
+      split_lines=False)
+      .split('---') }}

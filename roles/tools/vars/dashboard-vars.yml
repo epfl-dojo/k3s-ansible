@@ -1,0 +1,8 @@
+
+#URL latest version of the dashboard
+_version_kube_latest_pointer: https://github.com/kubernetes/dashboard/releases/latest
+
+#Dashboard version number
+version_kube_dashboard: >-
+  {{ lookup('pipe', 'curl -w "%{url_effective}" -I -L -s -S {{ _version_kube_latest_pointer }} -o /dev/null
+  | sed -e "s|.*/||"') }}
