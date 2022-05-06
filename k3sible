@@ -3,6 +3,23 @@
 # This is a wrapper around ansible / ansible-playbook that uses the
 # [Ansible Suitecase](https://github.com/epfl-si/ansible.suitecase).
 #
+# k3sible to support the different infras for Kubernetes clusters
+# 
+# Now you have to do:
+# 
+# To deploy on the SwitchEngine infra
+# ./k3sible --switch
+# 
+# To remove k3s on the SwitchEngine infra
+# ./k3sible --switch-reset
+# 
+# To deploy on Proxmox's Gitpod1 infra (SDF tests)
+# ./k3sible --zgitpod1
+# 
+# To remove k3s on the Gitpod1 infra of Proxmox (SDF tests)
+# ./k3sible --zgitpod1-reset
+#
+#
 # Usage ("ansible" mode):
 #   ./ansible/k3sible -m raw all -a 'date'
 #
